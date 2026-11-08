@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wristconf"
+version = "0.1.0"
+description = "Read, back up and change the settings of a Garmin watch over Bluetooth, from a computer"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+license-files = ["LICENSE"]
+authors = [{ name = "Luis Felipe Rodrigues" }]
+keywords = ["garmin", "fenix", "bluetooth", "ble", "smartwatch", "settings", "gadgetbridge"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Hardware",
+]
+dependencies = [
+    "garmin-ble==0.3.2",   # the code reaches into Watch internals: pin exactly, bump on purpose
+    "bleak>=0.22",
+    "protobuf>=7.36,<8",   # matches the protoc used for src/wristconf/_proto (see scripts/gen_proto.sh)
+    "pexpect>=4.9; sys_platform == 'linux'",
+]
+
+[project.urls]
+Source = "https://github.com/luisfelipecr/wristconf"
+Issues = "https://github.com/luisfelipecr/wristconf/issues"
+
+[project.scripts]
+wristconf = "wristconf.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wristconf"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "proto", "docs", "examples", "tests", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["src/wristconf/_proto"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]

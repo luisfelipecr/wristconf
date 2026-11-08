@@ -1,0 +1,21 @@
+# A new activity built from HIIT: add it, rename it, turn touch off.
+# The second and third changes depend on the first one: `plan` marks them
+# "(after the changes above)" and they are checked again right before writing.
+name = "CrossFit activity"
+description = "Adds a HIIT activity, renames it to CrossFit and turns touch off for it."
+model = "fenix 8 - 47mm"
+
+[[change]]
+path = "Settings > Activities & Apps > Activities > Add"
+item = "HIIT"
+select = true
+
+[[change]]
+path = "Settings > Activities & Apps > Activities > HIIT"
+item = "Rename"
+text = "CrossFit"
+
+[[change]]
+path = "Settings > Activities & Apps > Activities > CrossFit"
+item = "Touch"
+choice = "Touch Off"

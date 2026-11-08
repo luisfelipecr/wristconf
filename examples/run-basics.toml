@@ -1,0 +1,20 @@
+# Preview:  wristconf plan examples/run-basics.toml
+# Write:    wristconf apply examples/run-basics.toml
+name = "Run basics"
+description = "Blue accent, multi-band GPS and no auto lap on the Run activity."
+model = "fenix 8 - 47mm"
+
+[[change]]
+path = "Settings > Activities & Apps > Activities > Run"
+item = "Accent Color"
+choice = "Blue"
+
+[[change]]
+path = "Settings > Activities & Apps > Activities > Run"
+item = "Satellites"
+choice = "All + Multi-Band"
+
+[[change]]
+path = "Settings > Activities & Apps > Activities > Run > Laps"
+item = "Auto Lap"
+choice = "Off"

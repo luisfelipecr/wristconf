@@ -1,0 +1,14 @@
+# Shorter screen timeout and seconds only when the watch is awake.
+name = "Calm display"
+description = "8-second timeout; watch face seconds only on wake."
+model = "fenix 8 - 47mm"
+
+[[change]]
+path = "Settings > Display & Brightness"
+item = "Timeout"
+choice = "8 Seconds"
+
+[[change]]
+path = "Settings > Display & Brightness"
+item = "Watch Face Seconds"
+choice = "On Wake"
